@@ -1,0 +1,2 @@
+rootProject.name='Dostawa'
+include ':app'

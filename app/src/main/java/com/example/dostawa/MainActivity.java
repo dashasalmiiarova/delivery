@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
         BCutomer = (Button) findViewById(R.id.b_customer);
         BCourier = (Button) findViewById(R.id.b_courier);
+
         BCutomer.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -23,6 +24,16 @@ public class MainActivity extends AppCompatActivity {
                  startActivity(intent);
                  finish();
                  return;
+            }
+        });
+
+        BCourier.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, DriverLoginActivity.class);
+                startActivity(intent);
+                finish();
+                return;
             }
         });
     }

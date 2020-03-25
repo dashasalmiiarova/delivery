@@ -11,13 +11,12 @@
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:text="Uzytkownik"
-       android:id="@+id/b_customer"
-       />
+       android:id="@+id/b_customer" />
+
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:text="Kurier"
         android:id="@+id/b_courier"
-        />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Kurier" />
 
 </LinearLayout>

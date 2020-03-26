@@ -5,27 +5,50 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CustomerLoginActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_weight="1">
+
     <EditText
-        android:layout_width="match_parent"
+        android:id="@+id/cemail"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:hint="email"
-        android:id="@+id/email"
-        />
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="145dp"
+        app:layout_constraintHorizontal_bias = "0.0"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textEmailAddress" />
+
     <EditText
-        android:layout_width="match_parent"
+        android:id="@+id/cpassword"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:hint="password"
-        android:id="@+id/password"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        app:layout_constraintBaseline_toBaselineOf="@+id/cemail"
+        android:ems="10"
+        android:hint="Hasło"
+        android:inputType="textPassword"
         />
+
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="Logowanie"
-        android:id="@+id/login"/>
+        android:layout_centerInParent="true"
+        android:id="@+id/clogin"
+        android:alpha="0.5"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/btn_rounded"/>
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="Registracja"
-        android:id="@+id/registration"/>
+        android:layout_centerInParent="true"
+        android:alpha="0.5"
+        android:id="@+id/cregistration"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/btn_rounded"/>
 </LinearLayout>

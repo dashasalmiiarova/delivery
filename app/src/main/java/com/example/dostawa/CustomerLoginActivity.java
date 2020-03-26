@@ -2,6 +2,7 @@ package com.example.dostawa;
 
 import android.content.Intent;
 import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -22,93 +23,64 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.net.NetworkInfo;
+import com.google.firebase.database.IgnoreExtraProperties;
 
-public class CustomerLoginActivity extends AppCompatActivity {
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class CustomerLoginActivity extends AppCompatActivity implements View.OnClickListener{
     private EditText cEmail, cPassword;
     private Button cLogin, cRegistration;
 
-    private FirebaseAuth mAuth;
+    private FirebaseAuth cAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthListener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_customer_login);
+        setContentView(R.layout.activity_driver_login);
 
-        mAuth = FirebaseAuth.getInstance();
-
-        firebaseAuthListener = new FirebaseAuth.AuthStateListener() {
+        cAuth = FirebaseAuth.getInstance();
+        cEmail = (EditText) findViewById(R.id.cemail);
+        cPassword = (EditText) findViewById(R.id.cpassword);
+//        findViewById(R.id.clogin).setOnClickListener(this);
+        findViewById(R.id.clogin).setOnClickListener(this);
+        findViewById(R.id.cregistration).setOnClickListener(this);
+    }
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.registration){
+            Registracja(cEmail.getText().toString(), cPassword.getText().toString());
+        }else if (v.getId() == R.id.login){
+            Login(cEmail.getText().toString(), cPassword.getText().toString());
+        }
+    }
+    public void Login(String email, String password){
+        cAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                if (user != null){
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(CustomerLoginActivity.this, "Sing in sucsessfull", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(CustomerLoginActivity.this, SecondCActivity.class);
                     startActivity(intent);
-                    finish();
-                    return;
+                } else {
+                    Toast.makeText(CustomerLoginActivity.this, "Sign in is not sucessful", Toast.LENGTH_SHORT).show();
                 }
             }
-        };
-
-        cLogin = (Button) findViewById(R.id.login);
-        cRegistration = (Button) findViewById(R.id.registration);
-
-        cEmail = (EditText) findViewById(R.id.email);
-        cPassword = (EditText) findViewById(R.id.password);
-
-        if (mAuth.getCurrentUser() != null){
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-            finish();
-        }
-        cRegistration.setOnClickListener(new View.OnClickListener(){
+        });
+    }
+    public void Registracja (String email, String password){
+        cAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
-            public void onClick(View v) {
-                final String email = cEmail.getText().toString();
-                final String password = cPassword.getText().toString();
-                mAuth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(CustomerLoginActivity.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (!task.isSuccessful()){
-//                            Toast.makeText(CustomerLoginActivity.this, "User Created", Toast.LENGTH_SHORT).show();
-//                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                            Toast.makeText(CustomerLoginActivity.this, "Problem z logowaniem", Toast.LENGTH_LONG).show();
-
-                        }
-                        else{
-                            String user_id = mAuth.getCurrentUser().getUid();
-                            DatabaseReference current_user_db = FirebaseDatabase.getInstance().getReference().child("Users").child("Customers").child(user_id);
-                            current_user_db.setValue(true);
-//                            Toast.makeText(CustomerLoginActivity.this, "Error! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-            }
-        });
-        cLogin.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                final String email = cEmail.getText().toString();
-                final String password = cPassword.getText().toString();
-                mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(CustomerLoginActivity.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (!task.isSuccessful()){
-                            Toast.makeText(CustomerLoginActivity.this, "Problem z logowaniem", Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()){
+                    Toast.makeText(CustomerLoginActivity.this, "Registration is sucsessfull", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(CustomerLoginActivity.this, SecondCActivity.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(CustomerLoginActivity.this, "Registration is not sucsessfull", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
-
-    @Override
-    protected void onStart(){
-        super.onStart();
-        mAuth.addAuthStateListener(firebaseAuthListener);
-    }
-    @Override
-    protected void onStop(){
-        super.onStop();
-        mAuth.removeAuthStateListener(firebaseAuthListener);
-    }
-
 }

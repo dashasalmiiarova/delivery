@@ -4,29 +4,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DriverLoginActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_weight="1"
+    tools:context=".DriverLoginActivity">
+
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="email"
         android:id="@+id/email"
-        />
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Email"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="145dp"
+        app:layout_constraintHorizontal_bias = "0.0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_centerInParent="true"
+        android:inputType="textEmailAddress" />
+
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="password"
         android:id="@+id/password"
-        />
-    <Button
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="Logowanie"
-        android:id="@+id/login"/>
+        android:ems="10"
+        android:hint="Haslo"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        app:layout_constraintBaseline_toBaselineOf="@+id/cemail"
+        android:inputType="textPassword" />
+
     <Button
-        android:layout_width="match_parent"
+        android:id="@+id/login"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Logowanie"
+        android:alpha="0.5"
+        android:layout_centerInParent="true"
+        android:background="@drawable/btn_rounded"/>
+
+    <Button
+        android:id="@+id/registration"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="Registracja"
-        android:id="@+id/registration"/>
+        android:layout_centerInParent="true"
+        android:alpha="0.5"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/btn_rounded"/>
 
 </LinearLayout>

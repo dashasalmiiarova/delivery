@@ -4,11 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CustomerLoginActivity"
     android:orientation="vertical"
     android:gravity="center"
-    android:layout_weight="1">
-
+    android:layout_weight="1"
+    tools:context=".DriverActivity">
     <EditText
         android:id="@+id/cemail"
         android:layout_width="300dp"
@@ -40,7 +39,7 @@
         android:layout_centerInParent="true"
         android:id="@+id/clogin"
         android:alpha="0.5"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/btn_rounded"/>
     <Button
         android:layout_width="300dp"
@@ -49,6 +48,15 @@
         android:layout_centerInParent="true"
         android:alpha="0.5"
         android:id="@+id/cregistration"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/btn_rounded"/>
+    <Button
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Nie pamiętam hasła"
+        android:layout_centerInParent="true"
+        android:alpha="0.5"
+        android:id="@+id/recoverpasscustomer"
+        android:layout_marginTop="20dp"
         android:background="@drawable/btn_rounded"/>
 </LinearLayout>

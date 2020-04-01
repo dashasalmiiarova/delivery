@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".RecoverPDrivActivity">
+
+    <TextView
+        android:id="@+id/textresetC"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:layout_centerInParent="true"
+        android:text="Nie pamiętasz hasła? Możesz zresetowac go teraz" />
+
+    <EditText
+        android:id="@+id/emailResetC"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        android:ems="10"
+        android:hint="Wpisz email wykorzystywany przy rejestracji"
+        android:inputType="textEmailAddress" />
+
+    <Button
+        android:id="@+id/buttonResetC"
+        android:layout_width="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/btn_rounded"
+        android:layout_height="wrap_content"
+        android:text="Resetuj hasło" />
+</LinearLayout>

@@ -44,7 +44,16 @@ public class DriverActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()){
-                                    Toast.makeText(DriverActivity.this, "Registration is sucsessfull", Toast.LENGTH_SHORT).show();
+                                    cAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                Toast.makeText(DriverActivity.this, "Registration is successfully. Please check your email for verification", Toast.LENGTH_SHORT).show();
+                                            } else{
+                                                Toast.makeText(DriverActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
 
                                 } else  {
                                     Toast.makeText(DriverActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();

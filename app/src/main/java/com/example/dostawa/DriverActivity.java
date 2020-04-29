@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -133,6 +134,21 @@ public class DriverActivity extends AppCompatActivity {
                                         if (i == 0) {
                                             cLogin.setEnabled(false);
                                             Toast.makeText(DriverActivity.this, "Logowanie niedotępne", Toast.LENGTH_SHORT).show();
+                                        } if (!cLogin.isEnabled()){
+
+                                            Toast.makeText(DriverActivity.this, "Sprobuje jeszcze po 15 minutach", Toast.LENGTH_SHORT).show();
+                                            new CountDownTimer(30000, 1000){
+//                                                900000 - 15 minutes
+                                                @Override
+                                                public void onTick(long millisUntilFinished) {}
+
+                                                @Override
+                                                public void onFinish() {
+                                                    Toast.makeText(DriverActivity.this, "Morzesz sprobować zalogować się jeszcze raz", Toast.LENGTH_SHORT).show();
+                                                    cLogin.setEnabled(true);
+                                                    i = 5;
+                                                }
+                                            }.start();
                                         }
                                     } else {
                                         Toast.makeText(DriverActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();

@@ -138,11 +138,11 @@ public class CustomerActivity extends AppCompatActivity {
                                         if (i == 0) {
                                             cLogin.setEnabled(false);
                                             Toast.makeText(CustomerActivity.this, "Logowanie niedotępne", Toast.LENGTH_SHORT).show();
-                                        }
-                                        if (!cLogin.isEnabled()){
-                                            Toast.makeText(CustomerActivity.this, "Sprobuje jeszcze po 15 minutach", Toast.LENGTH_SHORT).show();
-                                            new CountDownTimer(6000, 1000){
+                                        } if (!cLogin.isEnabled()){
 
+                                            Toast.makeText(CustomerActivity.this, "Sprobuje jeszcze po 15 minutach", Toast.LENGTH_SHORT).show();
+                                            new CountDownTimer(30000, 1000){
+//                                                900000 - 15 minutes
                                                 @Override
                                                 public void onTick(long millisUntilFinished) {}
 

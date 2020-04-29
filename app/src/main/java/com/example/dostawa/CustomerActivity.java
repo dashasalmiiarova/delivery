@@ -7,6 +7,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.icu.text.IDNA;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -26,7 +27,7 @@ public class CustomerActivity extends AppCompatActivity {
     EditText cEmail, cPassword;
     Button cLogin, cRegistration, cRecoverP;
     FirebaseAuth cAuth;
-    private int i = 0; //count the number of try to login
+    private int i = 5; //count the number of try to login
 
     private ProgressDialog progressDialog;
 
@@ -111,7 +112,7 @@ public class CustomerActivity extends AppCompatActivity {
                 } else {
                     //даем пользователю знать что происходит
                     progressDialog.setTitle("Logowanie!");
-                    progressDialog.setMessage("Sprawdzamy dane, poczekaj chwilkę!");
+                    progressDialog.setMessage("Sprawdzamy dane, poczekaj chwilkę");
                     progressDialog.setCanceledOnTouchOutside(false);
                     progressDialog.show();
 
@@ -137,6 +138,21 @@ public class CustomerActivity extends AppCompatActivity {
                                         if (i == 0) {
                                             cLogin.setEnabled(false);
                                             Toast.makeText(CustomerActivity.this, "Logowanie niedotępne", Toast.LENGTH_SHORT).show();
+                                        }
+                                        if (!cLogin.isEnabled()){
+                                            Toast.makeText(CustomerActivity.this, "Sprobuje jeszcze po 15 minutach", Toast.LENGTH_SHORT).show();
+                                            new CountDownTimer(6000, 1000){
+
+                                                @Override
+                                                public void onTick(long millisUntilFinished) {}
+
+                                                @Override
+                                                public void onFinish() {
+                                                    Toast.makeText(CustomerActivity.this, "Morzesz sprobować zalogować się jeszcze raz", Toast.LENGTH_SHORT).show();
+                                                    cLogin.setEnabled(true);
+                                                    i = 5;
+                                                }
+                                            }.start();
                                         }
                                     } else {
                                         Toast.makeText(CustomerActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();

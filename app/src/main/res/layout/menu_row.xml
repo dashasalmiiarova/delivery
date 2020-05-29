@@ -21,7 +21,8 @@
             android:id="@+id/menu_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scaleType="centerCrop"
+            android:gravity="center"
+            android:layout_alignParentBottom="true"
             android:text="MENU TEXT"
             android:textSize="24sp"
             android:textColor="@android:color/black" />

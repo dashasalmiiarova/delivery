@@ -22,11 +22,11 @@ public class MainActivity extends AppCompatActivity {
         BCutomer.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, CustomerActivity.class));
-//                Intent intent = new Intent(MainActivity.this, CustomerLoginActivity.class);
-//                 startActivity(intent);
-//                 finish();
-//                 return;
+//                startActivity(new Intent(MainActivity.this, CustomerActivity.class));
+                Intent intent = new Intent(MainActivity.this, CustomerActivity.class);
+                 startActivity(intent);
+                 finish();
+                 return;
             }
         });
 

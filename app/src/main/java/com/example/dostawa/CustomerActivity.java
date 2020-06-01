@@ -23,6 +23,8 @@ import com.google.firebase.auth.FirebaseUser;
 
 import org.w3c.dom.Text;
 
+import java.util.Objects;
+
 public class CustomerActivity extends AppCompatActivity {
     EditText cEmail, cPassword;
     Button cLogin, cRegistration, cRecoverP;
@@ -67,7 +69,7 @@ public class CustomerActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
-                                        cAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        Objects.requireNonNull(cAuth.getCurrentUser()).sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if (task.isSuccessful()) {
@@ -79,7 +81,7 @@ public class CustomerActivity extends AppCompatActivity {
                                                         Intent intent = new Intent(CustomerActivity.this, SecondCActivity.class);
                                                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);
                                                         startActivity(intent);
-//                                                        finish();
+                                                        finish();
                                                     }
                                                 } else {
                                                     Toast.makeText(CustomerActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();

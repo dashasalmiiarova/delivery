@@ -4,27 +4,99 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.dostawa.Model.Category;
+import com.example.dostawa.FoodAdapter;
 import com.example.dostawa.R;
-import com.example.dostawa.RecyclerViewAdapter;
-import com.example.dostawa.ViewHold;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.ArrayList;
-import java.util.List;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 public class HomeFragment extends Fragment {
+    private HomeViewModel homeViewModel;
+
+//    private FoodAdapter adapter;
+    Unbinder unbinder;
+    @BindView(R.id.recyclerview)
+    RecyclerView recyclerView;
+
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
+        homeViewModel =
+                ViewModelProviders.of(this).get(HomeViewModel.class);
+
+        View root = inflater.inflate(R.layout.fragment_home, container, false);
+//        recyclerView = root.findViewById(R.id.recyclerview);
+        unbinder = ButterKnife.bind(this, root);
+        init();
+        homeViewModel.getFood().observe(getViewLifecycleOwner(),foods -> {
+            FoodAdapter adapter = new FoodAdapter(getContext(), foods);
+            recyclerView.setAdapter(adapter);
+        });
+
+        return root;
+    }
+
+    private void init() {
+      recyclerView.setHasFixedSize(true);
+      recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
+    }
+}
+
+//    @Override
+//    public void onViewCreated(View view, @Nullable Bundle savedInstanceState){
+//        super.onViewCreated(view, savedInstanceState);
+//        this.v=view;
+//        init();
+//        progress = new ProgressDialog(getActivity());
+//        progress.setTitle("Loading");
+//        progress.setMessage("Syncing");
+//        progress.setCancelable(false);
+//        progress.show();
+//        loaddata();
+//    }
+
+//    private void loaddata() {
+//        DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("Category");
+//        db.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                dataset.clear();
+//                mDatakey.clear();
+//                for (DataSnapshot single:dataSnapshot.getChildren()){
+//                    dataset.add(single.getValue(Category.class));
+//                    mDatakey.add(single.getKey().toString());
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
+//    }
+
+//    private void init() {
+//        re = (RecyclerView) v.findViewById(R.id.recyclerview);
+//        re.setLayoutManager(new LinearLayoutManager(getContext()));
+//        cc = new FoodAdapter(dataset, mDatakey,getActivity());
+//    }
+
+
+//    private void init() {
+//        recyclerView.setHasFixedSize(true);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL,false));
+//    }
+
+
 //    LinearLayoutManager linearLayoutManager;
 //    RecyclerView mrecyclerView;
 //    FirebaseDatabase firebaseDatabase;
@@ -84,41 +156,47 @@ public class HomeFragment extends Fragment {
 //        }
 //    }
 
-    View v;
-    private RecyclerView mRecycleView;
-    private List<Category> lstCategory;
-    public HomeFragment() {
-    }
+    //It works!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//    View v;
+//    private RecyclerView mRecycleView;
+//    private List<Category> lstCategory;
+//    public HomeFragment() {
+//    }
+//
+//    @Nullable
+//    @Override
+//    public View onCreateView(@NonNull LayoutInflater inflater,
+//                             ViewGroup container, Bundle savedInstanceState) {
+//        v = inflater.inflate(R.layout.fragment_home,container,false);
+//        mRecycleView = (RecyclerView) v.findViewById(R.id.recyclerview);
+//        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(getContext(), lstCategory);
+//        mRecycleView.setLayoutManager(new LinearLayoutManager(getActivity()));
+//        mRecycleView.setAdapter(recyclerViewAdapter);
+//        return v;
+//    }
+//
+//
+//    @Override
+//    public void onCreate(@Nullable Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//
+//        lstCategory = new ArrayList<>();
+//        lstCategory.add(new Category("Fish",R.drawable.img1));
+//        lstCategory.add(new Category("Chicken",R.drawable.img2));
+//        lstCategory.add(new Category("Pasta",R.drawable.img3));
+//        lstCategory.add(new Category("Soup",R.drawable.img4));
+//        lstCategory.add(new Category("Rise and fish",R.drawable.img5));
+//        lstCategory.add(new Category("Soup",R.drawable.img6));
+//        lstCategory.add(new Category("Soup",R.drawable.img7));
+//        lstCategory.add(new Category("Trimmings with shrimps",R.drawable.img8));
+//        lstCategory.add(new Category("Trimmings with fish",R.drawable.img9));
+//        lstCategory.add(new Category("Trimmings with chicken",R.drawable.img10));
+//    }
+    ///END!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        v = inflater.inflate(R.layout.fragment_home,container,false);
-        mRecycleView = (RecyclerView) v.findViewById(R.id.recyclerview);
-        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(getContext(), lstCategory);
-        mRecycleView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mRecycleView.setAdapter(recyclerViewAdapter);
-        return v;
-    }
 
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
 
-        lstCategory = new ArrayList<>();
-        lstCategory.add(new Category("Fish",R.drawable.img1));
-        lstCategory.add(new Category("Chicken",R.drawable.img2));
-        lstCategory.add(new Category("Pasta",R.drawable.img3));
-        lstCategory.add(new Category("Soup",R.drawable.img4));
-        lstCategory.add(new Category("Rise and fish",R.drawable.img5));
-        lstCategory.add(new Category("Soup",R.drawable.img6));
-        lstCategory.add(new Category("Soup",R.drawable.img7));
-        lstCategory.add(new Category("Trimmings with shrimps",R.drawable.img8));
-        lstCategory.add(new Category("Trimmings with fish",R.drawable.img9));
-        lstCategory.add(new Category("Trimmings with chicken",R.drawable.img10));
-    }
 //            public void onChanged(@Nullable String s) {
 //                textView.setText(s);
 //            }
@@ -137,4 +215,4 @@ public class HomeFragment extends Fragment {
 //        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
 //            @Override
 //        return root;
-        }
+//        }

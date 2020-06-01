@@ -17,7 +17,6 @@
             android:name=".TestN"
             android:label="@string/title_activity_test_n"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".SubActivity" />
         <activity
             android:name=".Test"
             android:label="@string/title_activity_test"

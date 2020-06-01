@@ -1,8 +1,7 @@
 package com.example.dostawa.Model;
 
 public class Food {
-    String Image;
-    String Name;
+    private String Image, Name;
 
     public Food() {
     }

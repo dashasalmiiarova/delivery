@@ -6,12 +6,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.home.HomeFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-    </androidx.recyclerview.widget.RecyclerView>
+                </androidx.recyclerview.widget.RecyclerView>
+
+
+<!--    <ListView-->
+<!--        android:id="@+id/listView"-->
+<!--        android:layout_width="409dp"-->
+<!--        android:layout_height="510dp"-->
+<!--        android:layout_marginStart="1dp"-->
+<!--        android:layout_marginTop="156dp"-->
+<!--        android:layout_marginEnd="1dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/logout"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.0"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.0" />-->
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/list_item"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:weightSum="1"-->
+<!--        android:orientation="vertical"-->
+<!--        android:padding="8dp">-->
+<!--    </LinearLayout>-->
+
+
+<!--<LinearLayout-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="0dp"-->
+<!--android:layout_weight="2"-->
+<!--android:orientation="vertical"-->
+<!-->-->
 
 
 <!--    <LinearLayout-->

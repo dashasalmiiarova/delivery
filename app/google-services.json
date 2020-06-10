@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "424887163109",
-    "firebase_url": "https://pz-dostawa.firebaseio.com",
-    "project_id": "pz-dostawa",
-    "storage_bucket": "pz-dostawa.appspot.com"
+    "project_number": "85240753909",
+    "firebase_url": "https://dostawa-f7b68.firebaseio.com",
+    "project_id": "dostawa-f7b68",
+    "storage_bucket": "dostawa-f7b68.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:424887163109:android:55c4cd847428c08e61dc0c",
+        "mobilesdk_app_id": "1:85240753909:android:e0d072f30208bdf96d9fbc",
         "android_client_info": {
-          "package_name": "com.example.dostawa"
+          "package_name": "com.dariia.dos"
         }
       },
       "oauth_client": [
         {
-          "client_id": "424887163109-itnmv97ivvn15ft6lcs5oq6e87o1927q.apps.googleusercontent.com",
+          "client_id": "85240753909-s899re6lvfc4masnvl1eusvb3ra18gfj.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAQxE516OAGRPqt__b-iwbvoSapjlOrg1k"
+          "current_key": "AIzaSyCOIBiTCqkrrdXqIgRJPUGtWfNyQu7RHQU"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "424887163109-itnmv97ivvn15ft6lcs5oq6e87o1927q.apps.googleusercontent.com",
+              "client_id": "85240753909-s899re6lvfc4masnvl1eusvb3ra18gfj.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
@@ -37,27 +37,27 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:424887163109:android:06ba3c7ea101dcfe61dc0c",
+        "mobilesdk_app_id": "1:85240753909:android:c66468115c39a3c86d9fbc",
         "android_client_info": {
-          "package_name": "com.example.dostawa_l"
+          "package_name": "com.example.dostawa"
         }
       },
       "oauth_client": [
         {
-          "client_id": "424887163109-itnmv97ivvn15ft6lcs5oq6e87o1927q.apps.googleusercontent.com",
+          "client_id": "85240753909-s899re6lvfc4masnvl1eusvb3ra18gfj.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAQxE516OAGRPqt__b-iwbvoSapjlOrg1k"
+          "current_key": "AIzaSyCOIBiTCqkrrdXqIgRJPUGtWfNyQu7RHQU"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "424887163109-itnmv97ivvn15ft6lcs5oq6e87o1927q.apps.googleusercontent.com",
+              "client_id": "85240753909-s899re6lvfc4masnvl1eusvb3ra18gfj.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

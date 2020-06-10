@@ -15,11 +15,17 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.dostawa.Model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
@@ -42,6 +48,10 @@ public class CustomerActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
         //проверка залогинен ли пользователь
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        //Init firebase
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference table_user = database.getReference("User");
 
         cEmail = (EditText) findViewById(R.id.cemail);
         cPassword = (EditText) findViewById(R.id.cpassword);
@@ -78,7 +88,7 @@ public class CustomerActivity extends AppCompatActivity {
                                                     if (cAuth.getCurrentUser().isEmailVerified()) {
 
                                                         //перевод на другую активность, если логин успешен, делаем так чтобы нельзя было вернуться на старую страницу(логина)
-                                                        Intent intent = new Intent(CustomerActivity.this, SecondCActivity.class);
+                                                        Intent intent = new Intent(CustomerActivity.this, TestN.class);
                                                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);
                                                         startActivity(intent);
                                                         finish();
@@ -98,10 +108,10 @@ public class CustomerActivity extends AppCompatActivity {
             }
         });
 
-        //если пользователь залогинен, то сразу перенаправляем на следующую активность
+//        если пользователь залогинен, то сразу перенаправляем на следующую активность
         if (user != null){
             finish();
-            startActivity(new Intent(CustomerActivity.this, SecondCActivity.class));
+            startActivity(new Intent(CustomerActivity.this, TestN.class));
         }
 
         cLogin.setOnClickListener(new View.OnClickListener() {
@@ -128,7 +138,7 @@ public class CustomerActivity extends AppCompatActivity {
                                         Toast.makeText(CustomerActivity.this, "Logowanie powiodło się", Toast.LENGTH_SHORT).show();
 
                                         //перевод на другую активность, если логин успешен, делаем так чтобы нельзя было вернуться на старую страницу(логина)
-                                        Intent intent = new Intent(CustomerActivity.this, SecondCActivity.class);
+                                        Intent intent = new Intent(CustomerActivity.this, TestN.class);
                                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);
                                         startActivity(intent);
 //                                        finish();
@@ -150,7 +160,7 @@ public class CustomerActivity extends AppCompatActivity {
 
                                                 @Override
                                                 public void onFinish() {
-                                                    Toast.makeText(CustomerActivity.this, "Morzesz sprobować zalogować się jeszcze raz", Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(CustomerActivity.this, "Możesz sprobować zalogować się jeszcze raz", Toast.LENGTH_SHORT).show();
                                                     cLogin.setEnabled(true);
                                                     i = 5;
                                                 }
@@ -168,11 +178,37 @@ public class CustomerActivity extends AppCompatActivity {
         cRecoverP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CustomerActivity.this, SecondCActivity.class);
+                Intent intent = new Intent(CustomerActivity.this, RecoverPassCActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);
                 startActivity(intent);
             }
         });
+
+//        cLogin.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                table_user.addValueEventListener(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                        //get User infornation
+//                        User user = dataSnapshot.child(cEmail.getText().toString()).getValue(User.class);
+//                        if (user.getPassword().equals(cPassword.getText().toString()))
+//                        {
+//                            Toast.makeText(CustomerActivity.this, "Sign in successfuly", Toast.LENGTH_SHORT).show();
+//                        } else {
+//                            Toast.makeText(CustomerActivity.this, "Sign in failed", Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                    }
+//                })
+//            }
+//        });
+
+
     }
 }
 

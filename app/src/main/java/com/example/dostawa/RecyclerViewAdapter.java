@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dostawa.Model.Category;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
@@ -36,6 +38,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.m_name.setText(mCategory.get(position).getFood_id_name());
         holder.m_image.setImageResource(mCategory.get(position).getImage());
+        holder.m_price.setText(mCategory.get(position).getPrice());
     }
 
     @Override
@@ -46,12 +49,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         private TextView m_name;
         private ImageView m_image;
+        private TextView m_price;
 
         public MyViewHolder(View itemView){
             super(itemView);
 
             m_name = (TextView) itemView.findViewById(R.id.menu_title);
             m_image = (ImageView) itemView.findViewById(R.id.menu_image);
+            m_price = (TextView) itemView.findViewById(R.id.txt_food_price);
         }
     }
 }

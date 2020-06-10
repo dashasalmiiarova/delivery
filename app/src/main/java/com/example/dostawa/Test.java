@@ -110,9 +110,9 @@ public  class Test extends AppCompatActivity implements NavigationView.OnNavigat
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
          if (id == R.id.nav_menu) {
-            Intent menu_act = new Intent(this, SubActivity.class);
-            startActivity(menu_act);
-            finish();
+//            Intent menu_act = new Intent(this, SubActivity.class);
+//            startActivity(menu_act);
+//            finish();
         } else if(id == R.id.nav_cart){
 
         } else if(id == R.id.nav_orders){

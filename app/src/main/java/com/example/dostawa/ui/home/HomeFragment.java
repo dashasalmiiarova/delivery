@@ -1,20 +1,34 @@
 package com.example.dostawa.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.NavController;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.dostawa.EventBus.FoodClick;
 import com.example.dostawa.FoodAdapter;
+//import com.example.dostawa.FoodDetailsActivity;
+import com.example.dostawa.FoodDetailsFragment;
+import com.example.dostawa.Model.Common;
 import com.example.dostawa.R;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -22,11 +36,12 @@ import butterknife.Unbinder;
 
 public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
-
-//    private FoodAdapter adapter;
+    private NavController navController;
     Unbinder unbinder;
     @BindView(R.id.recyclerview)
     RecyclerView recyclerView;
+
+//    private LayoutAnimationController layoutAnimationController;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -34,21 +49,50 @@ public class HomeFragment extends Fragment {
                 ViewModelProviders.of(this).get(HomeViewModel.class);
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-//        recyclerView = root.findViewById(R.id.recyclerview);
         unbinder = ButterKnife.bind(this, root);
         init();
+        ((AppCompatActivity)getActivity())
+                .getSupportActionBar()
+                .setTitle("Menu");
         homeViewModel.getFood().observe(getViewLifecycleOwner(),foods -> {
+
             FoodAdapter adapter = new FoodAdapter(getContext(), foods);
             recyclerView.setAdapter(adapter);
+//            recyclerView.setLayoutAnimation(layoutAnimationController);
         });
 
         return root;
     }
 
     private void init() {
+//      layoutAnimationController = AnimationUtils.loadLayoutAnimation(getContext(),R.anim.layout_animation_from_left);
       recyclerView.setHasFixedSize(true);
       recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
     }
+
+    //EventBus
+
+
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        EventBus.getDefault().register(this);
+//    }
+//
+//    @Override
+//    public void onStop() {
+//        EventBus.getDefault().unregister(this);
+//        super.onStop();
+//    }
+//    @Subscribe(sticky = true,threadMode = ThreadMode.MAIN)
+//    public void onFoodSelected(FoodClick event){
+//        if (event.isSuccess()){
+////            navController.navigate(R.id.fragment_food_details);
+////            Toast.makeText(getContext(), "Click to "+event.getFood().getName(), Toast.LENGTH_SHORT).show();
+////            Intent intent = new Intent(getContext(), FoodDetailsFragment.class);
+////            startActivity(intent);
+//        }
+//    }
 }
 
 //    @Override
@@ -155,6 +199,8 @@ public class HomeFragment extends Fragment {
 //            firebaseRecyclerAdapter.startListening();
 //        }
 //    }
+
+
 
     //It works!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //    View v;

@@ -19,7 +19,8 @@ public class RetrofitClient {
 
         if (instance == null)
             instance = new Retrofit.Builder()
-                    .baseUrl("https://us-central1-paymentbraintree.cloudfunctions.net/widgets/")
+//                    .baseUrl("https://us-central1-paymentbraintree.cloudfunctions.net/widgets/")
+                    .baseUrl("http://192.168.100.33:3001/")
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();

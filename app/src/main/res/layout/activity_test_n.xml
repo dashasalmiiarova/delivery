@@ -20,6 +20,20 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_test_n"
-        app:menu="@menu/activity_test_n_drawer" />
+        app:menu="@menu/activity_test_n_drawer" >
+
+        <Button
+            android:id="@+id/btn_logout"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="25dp"
+            android:textColor="@android:color/white"
+            android:background="@drawable/btn_logout"
+            android:alpha="0.7"
+            android:text="Wyloguj się" />
+
+    </com.google.android.material.navigation.NavigationView>
+
 
 </androidx.drawerlayout.widget.DrawerLayout>
